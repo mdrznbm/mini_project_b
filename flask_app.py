@@ -20,14 +20,17 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(4096))
 
-comments = []
+#comments = []
 
 @app.route("/", methods=["GET", "POST"])
 
 def index():
     if request.method == "GET":
-        return render_template("main_page.html", comments=comments)
-
-    comments.append(request.form["contents"])
-    return redirect(url_for('index'))
+#       return render_template("main_page.html", comments=comments)
+        return render_template("main_page.html", comments=Comment.query.all())
+#   comments.append(request.form["contents"])
+#   return redirect(url_for('index'))
+    comment = Comment(content=request.form["contents"])
+    db.session.add(comment)
+    db.session.commit()
 
