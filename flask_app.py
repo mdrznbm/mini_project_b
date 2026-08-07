@@ -53,6 +53,7 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(4096))
+    posted = db.Column(db.DateTime, default=datetime.now)
 
 # --- Routes ---
 @app.route("/", methods=["GET", "POST"])
