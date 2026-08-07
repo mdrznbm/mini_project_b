@@ -38,14 +38,19 @@
                         {{ comment.content }}
                     </div>
                     <div>
-                        <small>Posted {{ timestamp.strftime("%A, %d %B %Y at %H:%M") }} by anonymous</small>
+                        <small>
                             Posted
                             {% if comment.posted %}
                                 {{ comment.posted.strftime("%A, %d %B %Y at %H:%M") }}
                             {% else %}
                                 at an unknown time
                             {% endif %}
-                             by anonymous
+                            by
+                            {% if comment.commenter %}
+                                {{ comment.commenter.username }}
+                            {% else %}
+                                anonymous
+                            {% endif %}
                         </small>
                     </div>
                 </div>
