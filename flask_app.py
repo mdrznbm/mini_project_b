@@ -53,19 +53,37 @@ class Comment(db.Model):
     commenter = db.relationship('User', foreign_keys=commenter_id)
 
 # --- Routes ---
-@app.route("/", methods=["GET", "POST"])
+#@app.route("/", methods=["GET", "POST"])
+#def index():
+#    if request.method == "GET":
+#        return render_template("main_page.html", comments=Comment.query.all())
+
+#    if not current_user.is_authenticated:
+#        return redirect(url_for('index'))
+# --- Routes ---
+@app.route("/")
 def index():
+    return render_template("main_page.html")
+
+@app.route("/community-board", methods=["GET", "POST"])
+def community_board():
     if request.method == "GET":
-        return render_template("main_page.html", comments=Comment.query.all())
+        return render_template("community_board.html", comments=Comment.query.all())
 
     if not current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
 
     # Attach current_user as the commenter when saving new comments
     comment = Comment(content=request.form["contents"], commenter=current_user)
     db.session.add(comment)
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('community_board'))
+
+    # Attach current_user as the commenter when saving new comments
+#    comment = Comment(content=request.form["contents"], commenter=current_user)
+#    db.session.add(comment)
+#    db.session.commit()
+#    return redirect(url_for('index'))
 
 @app.route("/login/", methods=["GET", "POST"])
 def login():
