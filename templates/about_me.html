@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About Me | Mohammad Shahrazin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0b0c10;
+            --card-dark: #1f2833;
+            --accent-gold: #c5a059;
+            --accent-gold-hover: #d4af37;
+            --text-main: #ffffff;
+            --text-muted: #c5c6c7;
+            --border-color: #2c3846;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-muted);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Banner Navigation */
+        .navbar-custom {
+            background-color: rgba(31, 40, 51, 0.8);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            color: var(--text-main) !important;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        .navbar-brand span.logo-gold {
+            color: var(--accent-gold);
+        }
+
+        /* Top Header Buttons */
+        .btn-gold-sm {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            font-weight: 600;
+            border-radius: 20px;
+            padding: 6px 18px;
+            border: none;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-gold-sm:hover {
+            background-color: var(--accent-gold-hover);
+            color: var(--bg-dark);
+        }
+
+        /* Container Styling */
+        .about-container {
+            padding: 50px 0;
+            max-width: 850px;
+        }
+
+        .about-card {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-color);
+            border-top: 3px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            color: var(--text-main);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .page-title span.text-gold {
+            color: var(--accent-gold);
+        }
+
+        .section-heading {
+            color: var(--text-main);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        .hobby-item {
+            background-color: rgba(11, 12, 16, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease;
+        }
+
+        .hobby-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-gold);
+        }
+
+        .hobby-title {
+            color: var(--accent-gold);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hobby-desc {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-custom">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="/">md<span class="logo-gold">RZN</span>bm</a>
+            
+            <div class="d-flex align-items-center gap-2">
+                <a href="/" class="btn-gold-sm">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Home
+                </a>
+
+                <a href="{{ url_for('about_me') }}" class="btn-gold-sm">About Me</a>
+
+                <a href="{{ url_for('community_board') }}" class="btn-gold-sm">Community</a>
+
+                <a href="mailto:mdrznbm.w@gmail.com" class="btn-gold-sm">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container about-container">
+        <div class="about-card">
+            
+            <h1 class="page-title">About <span class="text-gold">Me</span></h1>
+            
+            <div class="intro-text mb-4">
+                <p>Hey there! I’m <strong>Mohammad Shahrazin</strong>.</p>
+                <p>
+                    On paper, I’m an aspiring Cloud Support & DevOps Engineer undergoing intensive training in cloud infrastructure, containerization, and CI/CD pipelines. In practice, I speak fluent Linux, wrangle SQLite & MySQL databases, script in Python, and write automation routines purely because I refuse to do the same task manually twice.
+                </p>
+                <p class="mb-0">
+                    If it runs in the cloud, breaks at 2 AM, or needs a continuous delivery pipeline built from scratch, I’m on it.
+                </p>
+            </div>
+
+            <h2 class="section-heading">Life Outside the Terminal</h2>
+            <p class="mb-4">When I’m not forcing servers to talk to each other, I balance my tech life with healthy, low-stress hobbies:</p>
+
+            <div class="hobby-item">
+                <div class="hobby-title">
+                    <i class="fa-solid fa-futbol"></i> Professional Heartbreak Enthusiast
+                </div>
+                <p class="hobby-desc">
+                    I am a fiercely loyal fan of the Singapore National Team (Go Lions! 🦁), Liverpool FC (You'll Never Walk Alone! 🔴), and Tampines Rovers (Come on you Stags! 🟡). Supporting three separate teams means I experience emotional damage on a weekly schedule. The perk? If I can survive stoppage-time heartbreaks and late-game collapses, a production server outage won't phase me one bit.
+                </p>
+            </div>
+
+            <div class="hobby-item">
+                <div class="hobby-title">
+                    <i class="fa-solid fa-laptop-code"></i> Digital Masochism
+                </div>
+                <p class="hobby-desc">
+                    I have a weirdly specific hobby of hunting down obscure, forgotten operating systems from the dark corners of the internet and installing them on innocent computers just to see what happens.
+                </p>
+            </div>
+
+            <div class="hobby-item">
+                <div class="hobby-title">
+                    <i class="fa-solid fa-gamepad"></i> Gaming & Wandering
+                </div>
+                <p class="hobby-desc">
+                    Equal-opportunity gamer across PC and console, casual traveler, and frequent listener of podcasts (mostly while trying to figure out why my code isn't compiling).
+                </p>
+            </div>
+
+            <div class="hobby-item">
+                <div class="hobby-title">
+                    <i class="fa-solid fa-ghost"></i> Paranormal & Horror
+                </div>
+                <p class="hobby-desc">
+                    Huge fan of scary movies, creepy dramas, and unexplained internet rabbit holes. Honestly, if a server room ever gets haunted, I’m fully qualified to handle both the IT troubleshooting and the exorcism.
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

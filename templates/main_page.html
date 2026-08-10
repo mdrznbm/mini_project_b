@@ -52,7 +52,7 @@
             padding: 20px 0;
         }
 
-        /* --- IT THEMED BACKGROUND (Between the 2 grey lines) --- */
+        /* IT THEMED BACKGROUND (Between the 2 grey lines) */
         .it-hero-card {
             position: relative;
             background-color: #11161d;
@@ -166,27 +166,6 @@
             color: var(--bg-dark);
         }
 
-        .btn-outline-gold-icon {
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
-            font-weight: 600;
-            border-radius: 50%;
-            width: 34px;
-            height: 34px;
-            background: transparent;
-            text-decoration: none;
-            font-size: 0.95rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        .btn-outline-gold-icon:hover {
-            background-color: var(--accent-gold);
-            color: var(--bg-dark);
-        }
-
         /* Divider Line */
         .section-divider {
             border: 0;
@@ -241,9 +220,7 @@
             <a class="navbar-brand" href="/">md<span class="logo-gold">RZN</span>bm</a>
             
             <div class="d-flex align-items-center gap-2">
-                <a href="https://www.linkedin.com/in/mohammad-shahrazin/" target="_blank" class="btn-outline-gold-icon" title="LinkedIn Profile">
-                    <i class="fa-brands fa-linkedin-in"></i>
-                </a>
+                <a href="{{ url_for('about_me') }}" class="btn-gold-sm">About Me</a>
                 
                 <a href="{{ url_for('community_board') }}" class="btn-gold-sm">Community</a>
                 

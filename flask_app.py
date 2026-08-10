@@ -52,9 +52,15 @@ class Comment(db.Model):
     commenter_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
     commenter = db.relationship('User', foreign_keys=commenter_id)
 
+# --- Routes ---
+
 @app.route("/")
 def index():
     return render_template("main_page.html")
+
+@app.route("/about-me")
+def about_me():
+    return render_template("about_me.html")
 
 @app.route("/community-board", methods=["GET", "POST"])
 def community_board():
@@ -83,7 +89,6 @@ def login():
         return render_template("login_page.html", error=True)
 
     login_user(user)
-    # Redirect directly to community board after successful login
     return redirect(url_for('community_board'))
 
 @app.route("/logout/")

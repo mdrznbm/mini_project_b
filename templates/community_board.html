@@ -68,27 +68,6 @@
             color: var(--bg-dark);
         }
 
-        .btn-outline-gold-icon {
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
-            font-weight: 600;
-            border-radius: 50%;
-            width: 34px;
-            height: 34px;
-            background: transparent;
-            text-decoration: none;
-            font-size: 0.95rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        .btn-outline-gold-icon:hover {
-            background-color: var(--accent-gold);
-            color: var(--bg-dark);
-        }
-
         /* Community Board Content Styling */
         .board-container {
             padding: 50px 0;
@@ -155,10 +134,10 @@
                     <i class="fa-solid fa-arrow-left me-1"></i> Home
                 </a>
 
-                <a href="https://www.linkedin.com/in/mohammad-shahrazin/" target="_blank" class="btn-outline-gold-icon" title="LinkedIn Profile">
-                    <i class="fa-brands fa-linkedin-in"></i>
-                </a>
-                
+                <a href="{{ url_for('about_me') }}" class="btn-gold-sm">About Me</a>
+
+                <a href="{{ url_for('community_board') }}" class="btn-gold-sm">Community</a>
+
                 <a href="mailto:mdrznbm.w@gmail.com" class="btn-gold-sm">Contact Me</a>
             </div>
         </div>
