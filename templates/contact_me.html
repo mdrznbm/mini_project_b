@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Me | Mohammad Shahrazin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0b0c10;
+            --card-dark: #1f2833;
+            --accent-gold: #c5a059;
+            --accent-gold-hover: #d4af37;
+            --text-main: #ffffff;
+            --text-muted: #c5c6c7;
+            --border-color: #2c3846;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-muted);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Navbar */
+        .navbar-custom {
+            background-color: rgba(31, 40, 51, 0.8);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            color: var(--text-main) !important;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        .navbar-brand span.logo-gold {
+            color: var(--accent-gold);
+        }
+
+        .btn-gold-sm {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            font-weight: 600;
+            border-radius: 20px;
+            padding: 6px 18px;
+            border: none;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-gold-sm:hover {
+            background-color: var(--accent-gold-hover);
+            color: var(--bg-dark);
+        }
+
+        /* Container */
+        .contact-container {
+            padding: 50px 0;
+            max-width: 700px;
+        }
+
+        /* NEW PLACEHOLDER BOX ABOVE CONTACT CARD */
+        .contact-intro-box {
+            background: linear-gradient(135deg, rgba(31, 40, 51, 0.9), rgba(11, 12, 16, 0.95));
+            border: 1px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .intro-title {
+            color: var(--accent-gold);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .intro-body {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .intro-footer {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Main Contact Card */
+        .contact-card {
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-color);
+            border-top: 3px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .page-title {
+            color: var(--text-main);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .page-title span.text-gold {
+            color: var(--accent-gold);
+        }
+
+        /* Placeholder Content Box */
+        .contact-placeholder {
+            background-color: rgba(11, 12, 16, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background-color: var(--card-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: border-color 0.2s ease;
+        }
+
+        .contact-row:hover {
+            border-color: var(--accent-gold);
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-main);
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 1.05rem;
+        }
+
+        .contact-info:hover {
+            color: var(--accent-gold);
+        }
+
+        .contact-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        /* Copy Button & Email Toggle */
+        .btn-copy {
+            background-color: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 5px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-copy:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+        }
+
+        .email-display-container {
+            display: none;
+            margin-top: 10px;
+            padding: 12px 16px;
+            background-color: rgba(197, 160, 89, 0.1);
+            border: 1px dashed var(--accent-gold);
+            border-radius: 8px;
+        }
+
+        .email-display-container.show {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-custom">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="/">md<span class="logo-gold">RZN</span>bm</a>
+            
+            <div class="d-flex align-items-center gap-2">
+                <a href="/" class="btn-gold-sm">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Home
+                </a>
+                <a href="{{ url_for('about_me') }}" class="btn-gold-sm">About Me</a>
+                <a href="{{ url_for('community_board') }}" class="btn-gold-sm">Community</a>
+                <a href="{{ url_for('contact_me') }}" class="btn-gold-sm">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container contact-container">
+
+        <div class="contact-intro-box">
+            <div class="intro-title">
+                Got an opportunity, a question, or a ghost in your server room?
+            </div>
+            <p class="intro-body">
+                I’m actively looking for new roles in Cloud Support &amp; DevOps. Whether you have an open position, an exciting project, or just want to connect with someone who loves system automation (and copes with football heartbreaks by testing obscure operating systems), reach out below!
+            </p>
+            <p class="intro-footer">
+                Drop a line—whether it’s job opportunities, cloud chats, or football condolences, I promise to respond faster than a smooth CI/CD build.
+            </p>
+        </div>
+
+        <div class="contact-card">
+            
+            <h1 class="page-title">Contact <span class="text-gold">Me</span></h1>
+
+            <div class="contact-placeholder">
+                
+                <div class="contact-row">
+                    <a href="https://wa.me/6589228947" target="_blank" class="contact-info" id="whatsapp-link">
+                        <div class="contact-icon">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <span>+65 8922 8947</span>
+                    </a>
+                    <span class="text-muted small">WhatsApp / SMS</span>
+                </div>
+
+                <div class="contact-row">
+                    <a href="https://www.linkedin.com/in/mohammad-shahrazin" target="_blank" class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </div>
+                        <span>Mohammad Shahrazin</span>
+                    </a>
+                    <span class="text-muted small">LinkedIn</span>
+                </div>
+
+                <div>
+                    <div class="contact-row">
+                        <div class="contact-info" style="cursor: pointer;" onclick="toggleEmailBox()">
+                            <div class="contact-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <span>Click to reveal email address</span>
+                        </div>
+                        <button class="btn-copy" onclick="toggleEmailBox()">View</button>
+                    </div>
+
+                    <div class="email-display-container mt-2" id="email-box">
+                        <span id="email-text" class="text-white font-monospace fw-bold">mdrznbm.w@gmail.com</span>
+                        <button class="btn-copy" onclick="copyEmailToClipboard()">
+                            <i class="fa-regular fa-copy me-1"></i> <span id="copy-btn-text">Copy</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Fallback for SMS on mobile devices if WhatsApp isn't installed
+        document.getElementById('whatsapp-link').addEventListener('click', function(e) {
+            if (/Android|iPhone/i.test(navigator.userAgent) && !confirm("Open WhatsApp? (Click 'Cancel' to open SMS text app instead)")) {
+                e.preventDefault();
+                window.location.href = "sms:+6589228947";
+            }
+        });
+
+        // Toggle Email Display
+        function toggleEmailBox() {
+            var box = document.getElementById("email-box");
+            box.classList.toggle("show");
+        }
+
+        // Copy Email to Clipboard
+        function copyEmailToClipboard() {
+            var emailText = document.getElementById("email-text").innerText;
+            navigator.clipboard.writeText(emailText).then(function() {
+                var btnText = document.getElementById("copy-btn-text");
+                btnText.innerText = "Copied!";
+                setTimeout(function() {
+                    btnText.innerText = "Copy";
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>

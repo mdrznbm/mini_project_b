@@ -68,15 +68,44 @@
             color: var(--bg-dark);
         }
 
-        /* Community Board Content Styling */
+        /* Community Board Container Styling */
         .board-container {
-            padding: 50px 0;
+            padding: 40px 0 60px 0;
             max-width: 800px;
+        }
+
+        /* Placeholder Callout Box Above Board */
+        .board-placeholder-box {
+            background: linear-gradient(135deg, rgba(31, 40, 51, 0.9), rgba(11, 12, 16, 0.95));
+            border: 1px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 22px 26px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .placeholder-title {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .placeholder-text {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            line-height: 1.6;
+            margin: 0;
         }
 
         .board-card {
             background-color: var(--card-dark);
             border: 1px solid var(--border-color);
+            border-top: 3px solid var(--accent-gold);
             border-radius: 12px;
             padding: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -138,19 +167,29 @@
 
                 <a href="{{ url_for('community_board') }}" class="btn-gold-sm">Community</a>
 
-                <a href="mailto:mdrznbm.w@gmail.com" class="btn-gold-sm">Contact Me</a>
+                <a href="{{ url_for('contact_me') }}" class="btn-gold-sm">Contact Me</a>
             </div>
         </div>
     </nav>
 
     <main class="container board-container">
+        
+        <div class="board-placeholder-box">
+            <div class="placeholder-title">
+                Got thoughts? Don't be a ghost! 👻
+            </div>
+            <p class="placeholder-text">
+                Log in to leave a comment, drop some wisdom, or just say hi. Your message will be safely tucked into my SQLite database and displayed right here for the world (or at least this corner of the internet) to see.
+            </p>
+        </div>
+
         <div class="board-card">
             <h2 class="board-title">Community Board</h2>
 
             <div class="comments-list mb-4">
                 {% for comment in comments %}
                     <div class="comment-item">
-                        <p class="mb-2">{{ comment.content }}</p>
+                        <p class="mb-2" style="color: var(--text-main);">{{ comment.content }}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="comment-date">
                                 <i class="fa-regular fa-clock me-1"></i> {{ comment.posted.strftime('%d %b %Y, %H:%M') }}

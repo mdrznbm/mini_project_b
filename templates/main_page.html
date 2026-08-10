@@ -52,11 +52,10 @@
             padding: 20px 0;
         }
 
-        /* IT THEMED BACKGROUND (Between the 2 grey lines) */
+        /* IT THEMED BACKGROUND */
         .it-hero-card {
             position: relative;
             background-color: #11161d;
-            /* Cyber grid + subtle circuit matrix gradient effect */
             background-image: 
                 linear-gradient(rgba(197, 160, 89, 0.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(197, 160, 89, 0.05) 1px, transparent 1px),
@@ -68,7 +67,6 @@
             box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6);
         }
 
-        /* Subtle IT glows behind text and image */
         .it-hero-card::before {
             content: '';
             position: absolute;
@@ -80,7 +78,7 @@
             pointer-events: none;
         }
 
-        /* Social Icons - Gold Theme */
+        /* Social Icons */
         .social-icons {
             display: flex;
             gap: 12px;
@@ -123,7 +121,7 @@
         .hero-subtitle {
             color: var(--text-muted);
             font-size: 1.15rem;
-            max-width: 520px;
+            max-width: 540px;
             line-height: 1.6;
             margin-bottom: 30px;
             position: relative;
@@ -182,7 +180,7 @@
             margin-bottom: 25px;
         }
 
-        /* Gold Horizontal Project Cards */
+        /* Project Cards */
         .project-card-gold {
             background-color: var(--accent-gold);
             color: #000000;
@@ -224,7 +222,7 @@
                 
                 <a href="{{ url_for('community_board') }}" class="btn-gold-sm">Community</a>
                 
-                <a href="mailto:mdrznbm.w@gmail.com" class="btn-gold-sm">Contact Me</a>
+                <a href="{{ url_for('contact_me') }}" class="btn-gold-sm">Contact Me</a>
             </div>
         </div>
     </nav>
@@ -238,7 +236,7 @@
                 
                 <div class="col-lg-7">
                     <div class="social-icons">
-                        <a href="mailto:mdrznbm.w@gmail.com" class="social-btn" title="Email Me">
+                        <a href="{{ url_for('contact_me') }}" class="social-btn" title="Contact Me">
                             <i class="fa-solid fa-envelope"></i>
                         </a>
                         <a href="https://wa.me/6589228947" target="_blank" class="social-btn" title="WhatsApp (+65 8922 8947)">
@@ -250,8 +248,9 @@
                     </div>
 
                     <h1 class="hero-title">Hi, I am<br>Mohammad Shahrazin</h1>
+                    
                     <p class="hero-subtitle">
-                        Aspiring Cloud Support & DevOps Engineer currently undergoing intensive training. Passionate about cloud infrastructure, automation, and continuous delivery.
+                        Aspiring Cloud Support & DevOps Engineer. &gt; Currently in intensive training to automate everything in sight—because doing the same task manually twice is against my personal philosophy.
                     </p>
                 </div>
 

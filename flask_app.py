@@ -1,4 +1,4 @@
-# A very simple Flask app for you to get started with...
+# A Flask app for portfolio and community features
 
 from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -10,6 +10,7 @@ from datetime import datetime
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+# Database Configuration
 SQLALCHEMY_DATABASE_URI = "sqlite:////home/mdrznbm/mysite/comments.db"
 
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
@@ -23,7 +24,9 @@ app.secret_key = "mini project a and b"
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-# --- User Model ---
+
+# --- Database Models ---
+
 class User(UserMixin, db.Model):
     __tablename__ = "users"
 
@@ -37,11 +40,7 @@ class User(UserMixin, db.Model):
     def get_id(self):
         return self.username
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.filter_by(username=user_id).first()
 
-# --- Comment Database Model ---
 class Comment(db.Model):
     __tablename__ = "comments"
 
@@ -52,15 +51,28 @@ class Comment(db.Model):
     commenter_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
     commenter = db.relationship('User', foreign_keys=commenter_id)
 
-# --- Routes ---
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.filter_by(username=user_id).first()
+
+
+# --- Application Routes ---
 
 @app.route("/")
 def index():
     return render_template("main_page.html")
 
+
 @app.route("/about-me")
 def about_me():
     return render_template("about_me.html")
+
+
+@app.route("/contact-me")
+def contact_me():
+    return render_template("contact_me.html")
+
 
 @app.route("/community-board", methods=["GET", "POST"])
 def community_board():
@@ -70,11 +82,11 @@ def community_board():
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
 
-    # Attach current_user as the commenter when saving new comments
     comment = Comment(content=request.form["contents"], commenter=current_user)
     db.session.add(comment)
     db.session.commit()
     return redirect(url_for('community_board'))
+
 
 @app.route("/login/", methods=["GET", "POST"])
 def login():
@@ -82,14 +94,12 @@ def login():
         return render_template("login_page.html", error=False)
 
     user = load_user(request.form["username"])
-    if user is None:
-        return render_template("login_page.html", error=True)
-
-    if not user.check_password(request.form["password"]):
+    if user is None or not user.check_password(request.form["password"]):
         return render_template("login_page.html", error=True)
 
     login_user(user)
     return redirect(url_for('community_board'))
+
 
 @app.route("/logout/")
 @login_required
