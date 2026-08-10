@@ -52,15 +52,6 @@ class Comment(db.Model):
     commenter_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
     commenter = db.relationship('User', foreign_keys=commenter_id)
 
-# --- Routes ---
-#@app.route("/", methods=["GET", "POST"])
-#def index():
-#    if request.method == "GET":
-#        return render_template("main_page.html", comments=Comment.query.all())
-
-#    if not current_user.is_authenticated:
-#        return redirect(url_for('index'))
-# --- Routes ---
 @app.route("/")
 def index():
     return render_template("main_page.html")
@@ -79,12 +70,6 @@ def community_board():
     db.session.commit()
     return redirect(url_for('community_board'))
 
-    # Attach current_user as the commenter when saving new comments
-#    comment = Comment(content=request.form["contents"], commenter=current_user)
-#    db.session.add(comment)
-#    db.session.commit()
-#    return redirect(url_for('index'))
-
 @app.route("/login/", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
@@ -98,23 +83,11 @@ def login():
         return render_template("login_page.html", error=True)
 
     login_user(user)
-    return redirect(url_for('index'))
+    # Redirect directly to community board after successful login
+    return redirect(url_for('community_board'))
 
 @app.route("/logout/")
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('index'))
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return redirect(url_for('community_board'))
