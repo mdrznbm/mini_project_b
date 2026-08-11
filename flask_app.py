@@ -1,5 +1,6 @@
 # A Flask app for portfolio and community features
 
+import os
 from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -11,7 +12,8 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 
 # Database Configuration
-SQLALCHEMY_DATABASE_URI = "sqlite:////home/mdrznbm/mysite/comments.db"
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "comments.db")
 
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
@@ -106,3 +108,7 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('community_board'))
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
