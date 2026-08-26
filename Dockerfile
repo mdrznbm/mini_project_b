@@ -1,20 +1,20 @@
-# Use an official lightweight Python image
-FROM python:3.10-slim
+# Base image: lightweight Python 3.13 build
+FROM python:3.13-slim
 
-# Set the working directory inside the container
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy requirement list first to leverage Docker layer caching
+# Copy requirements first to leverage Docker layer caching
 COPY requirements.txt .
 
-# Install dependencies
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy all project files into the container
+# Copy the rest of the application code (respects .dockerignore)
 COPY . .
 
-# Expose port 5000 for the Flask app
+# Document that the app listens on port 5000
 EXPOSE 5000
 
-# Command to run the application
+# Command to run when the container starts
 CMD ["python3", "flask_app.py"]
