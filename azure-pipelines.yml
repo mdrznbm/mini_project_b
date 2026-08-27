@@ -5,7 +5,7 @@ stages:
   - stage: Build
     displayName: 'Build and Push Docker Image'
     pool:
-      vmImage: 'ubuntu-latest'
+      name: 'Default'
     jobs:
       - job: BuildAndPush
         steps:
