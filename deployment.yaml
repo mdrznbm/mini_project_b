@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mini-project-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mini-project-b
+  template:
+    metadata:
+      labels:
+        app: mini-project-b
+    spec:
+      containers:
+        - name: mini-project-b
+          image: mdrznbm2/mini-project-b:1.0
+          ports:
+            - containerPort: 5000
+      imagePullSecrets:
+        - name: dockerhub-secret
