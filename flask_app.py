@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "comments.db")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///" + os.path.join(basedir, "comments.db"))
 
 app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -32,7 +32,7 @@ class User(UserMixin, db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(128))
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(256))
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
